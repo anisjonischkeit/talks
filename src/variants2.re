@@ -17,7 +17,7 @@ switch(safeHead(arr)) {
     ** we have checked it exists
     */
   | None => 
-    /* We have to handle the case where the list was empty */
+    /* We have to handle the case where the list is empty */
 };
 
 

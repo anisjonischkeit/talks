@@ -28,7 +28,7 @@ type user = {
   company: option(company)
 }
 
-let getAddressDescription: user => option(int) = (user) => {
+let getAddressDescription: (user => option(int)) = user => {
   let%Opt company = user.company;
   let%Opt address = company.address;
   

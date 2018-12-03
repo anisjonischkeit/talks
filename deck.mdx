@@ -36,7 +36,7 @@ export { default as theme } from "./theme";
   title="Variants and Pattern Matching"
   code={require("!raw-loader!./src/variants1.re")}
   lang="reason"
-  showNumbers={false}
+  showNumbers={true}
   dark={true}
   steps={[
     { range: [1, 5] },
@@ -63,7 +63,7 @@ export { default as theme } from "./theme";
   title="Examples of Common/Useful Variants"
   code={require("!raw-loader!./src/variants2.re")}
   lang="reason"
-  showNumbers={false}
+  showNumbers={true}
   dark={true}
   steps={[
     { range: [1, 5] },
@@ -123,8 +123,24 @@ export { default as theme } from "./theme";
   title="PG'OCaml"
   code={require("!raw-loader!./src/pgocaml.re")}
   lang="reason"
+  showNumbers={true}
+  dark={true}
+/>
+
+---
+
+<CodeSurfer
+  title="Pipes"
+  code={require("!raw-loader!./src/pipes.re")}
+  lang="reason"
   showNumbers={false}
   dark={true}
+  steps={[
+    { lines: [1] },
+    { range: [2, 4] },
+    { range: [6, 9] },
+    { range: [11, 14] }
+  ]}
 />
 
 ---
