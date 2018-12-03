@@ -15,7 +15,7 @@ Edit the [`deck.mdx`](deck.mdx) file to get started.
 
 ## Exporting
 
-To build the presentation deck as static HTML:
+To build the presentation deck as static HTML, first apply this fix (https://github.com/pomber/code-surfer/issues/8#issuecomment-422095168):
 
 ```sh
 npm run build
