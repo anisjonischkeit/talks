@@ -1,23 +1,78 @@
-import { Head } from 'mdx-deck'
+import { Head, Appear } from "mdx-deck";
+import { CodeSurfer } from "mdx-deck-code-surfer";
 
-export { default as theme } from './theme'
+export { default as theme } from "./theme";
 
 <Head>
-  <title>Presentation Title</title>
+  <title>ReasonML</title>
 </Head>
 
-# Hello
+<img src="https://reasonml.github.io/img/reason.svg" />
 
 ---
 
-## Edit this file
+## What is ReasonML
 
-To create your presentation
+<ul>
+  <Appear>
+    <li>A new syntax and toolchain powered by OCaml</li>
+    <li>Compiles to JavaScript as well as native</li>
+    <li>100% Static Type coverage</li>
+    <li>Open source project from Facebook</li>
+    <li>Created by the creator of React</li>
+  </Appear>
+</ul>
 
 ```notes
-- Create speaker notes in fenced code blocks
+- Reason is a new syntax and toolchain powered by OCaml. It compiles to javascript (which is what most people do with it) but can
+
+- Reason gives OCaml a familiar syntax geared toward JavaScript programmers, and caters to the existing NPM/Yarn workflow folks already know.
+
 ```
 
 ---
 
-<https://github.com/jxnblk/mdx-deck>
+<CodeSurfer
+  title="Variants and Pattern Matching"
+  code={require("!raw-loader!./src/variants1.re")}
+  lang="reason"
+  showNumbers={false}
+  dark={true}
+  steps={[
+    { range: [1, 5] },
+    { range: [6, 9] },
+    { range: [6, 24] },
+    { lines: [12] },
+    { range: [14, 22] },
+    { range: [15, 20] },
+    { lines: [22] },
+    { lines: [11, 15, 16, 24] },
+    { lines: [11, 18, 24] },
+    { lines: [11, 20, 24] },
+    { lines: [11, 22, 24] },
+    { range: [11, 24] },
+    { range: [26, 31] },
+    { range: [26, 38] },
+    { range: [33, 36] },
+  ]}
+/>
+
+---
+
+<CodeSurfer
+  title="Examples of Common/Useful Variants"
+  code={require("!raw-loader!./src/variants2.re")}
+  lang="reason"
+  showNumbers={false}
+  dark={true}
+  steps={[
+    { range: [1, 5] },
+    { range: [7, 12] },
+    { range: [14, 21] },
+    { range: [24, 27] },
+    { range: [31, 37] },
+    { range: [40, 43] },
+  ]}
+/>
+
+---
