@@ -1,0 +1,16 @@
+language: node_js
+node_js:
+  - "11.3.0"
+
+script:
+  - mkdir out
+  - ./intro-to-reasonml/build.sh
+
+deploy:
+  local-dir: out
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
+  keep-history: true
+  on:
+    branch: master
