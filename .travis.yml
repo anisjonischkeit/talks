@@ -5,6 +5,7 @@ cache: npm
 
 script:
   - mkdir out
+  - cp index.html out/index.html
   - ./intro-to-reasonml/build.sh
 
 deploy:
