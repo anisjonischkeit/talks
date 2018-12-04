@@ -4,7 +4,7 @@
   "description": "Deck created with mdx-deck",
   "scripts": {
     "start": "mdx-deck deck.mdx",
-    "build": "mdx-deck build deck.mdx",
+    "build": "mdx-deck build deck.mdx && cp -r images dist/images",
     "pdf": "mdx-deck pdf deck.mdx",
     "image": "mdx-deck screenshot deck.mdx",
     "help": "mdx-deck"
@@ -17,7 +17,7 @@
   },
   "name": "my-presentation-name",
   "dependencies": {
-    "mdx-deck": "1.8.0",
+    "mdx-deck": "^1.8.0",
     "mdx-deck-code-surfer": "^0.5.3",
     "raw-loader": "^0.5.1"
   }
