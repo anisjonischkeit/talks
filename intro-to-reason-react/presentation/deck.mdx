@@ -1,0 +1,138 @@
+export { default as theme } from "./theme";
+import { Appear } from "mdx-deck";
+import { CodeSurfer } from "mdx-deck-code-surfer";
+
+
+
+# ReasonML for your React App
+
+### Anis Jonischkeit
+### Twitter: @_anisj
+---
+
+## What is ReasonML
+
+<ul>
+  <Appear>
+    <li>A new syntax and toolchain powered by OCaml</li>
+    <li>Compiles to JavaScript as well as native</li>
+    <li>100% static type coverage</li>
+    <li>Open source project from Facebook</li>
+    <li>Created by the creator of React</li>
+  </Appear>
+</ul>
+
+---
+
+# The Type System
+
+```notes
+One of the biggest things that makes writing React apps in Reason so much easier is the type system. In a ReasonML project you will always have 100% type coverage and you rarely have to write out types to get that (Reasons type checker can just figure them out for you). It also lets you model your applications data in a way that you eliminate impossible states so you only have to deal with valid states and then it makes you actually deal with all of your valid states. Let me show this with an example:
+
+Imagine you want to fetch some data from an api. In javascript you might start by modelling it like this:
+```
+
+---
+
+<CodeSurfer
+  code={require("!raw-loader!./code/1.js")}
+  lang="javascript"
+  showNumbers={false}
+  dark={true}
+/>
+
+```notes
+This might look okay initially but let's say we actually build it into our application:
+```
+
+---
+
+<CodeSurfer
+  code={require("!raw-loader!./code/2.js")}
+  lang="javascript"
+  showNumbers={false}
+  dark={true}
+/>
+
+```notes
+what happens if we forget about the component did mount code or if something goes wrong in the getData function (it will say that it's loading when it's not)
+
+what if it was a button click that triggered getting the data, how could we say that it hasn't started loading yet (until that button has been pressed)
+
+what if there was an error fetching the data, the user will just wait on the page thinking it was still loading
+
+So we might make some changes to it:
+```
+
+---
+
+<CodeSurfer
+  code={require("!raw-loader!./code/3.js")}
+  lang="javascript"
+  showNumbers={false}
+  dark={true}
+/>
+
+```notes
+
+This code is however pretty error prone for a few reasons:
+
+- it's easy to forget to update the isLoadingData/didError/wasSuccessful fields in your state
+
+- you can just ignore didError/isLoadingData/wasSuccessful (what if you access props.data, read the value as null. How do you know whether the api returned null or whether the data)
+
+- There are so many impossible states that your application can be in. What if both didError and wasSuccessful are `true` or the data attribute and the error attribute are set. What if the application says it is loading but data is also set.
+
+With Flow you can make this a bit better:
+```
+
+---
+
+<CodeSurfer
+  code={require("!raw-loader!./code/4.js")}
+  lang="javascript"
+  showNumbers={false}
+  dark={true}
+/>
+
+```notes
+The code above is a lot better but it still has some problems:
+
+- We can still set RemoteData.status to be something other than the four values specified if we are setting it using a variable that the type system sets to `any`. With flow and typescript, it's also possible for the type system to lie to you and for you to lie to the type system.
+
+- Since the data we are getting comes from an API, there is no guarantee that it will actually be in the format we expect when it arrives. So we aren't handling the case where the API changes underneath us. This will lead to those dreaded `Unable to get property 'tex' of undefined` errors that leave your page broken and your customers wondering why they are seeing a blank page.
+
+So how would we handle this in a ReasonML application?
+
+```
+
+---
+
+<CodeSurfer
+  code={require("!raw-loader!./code/5.re")}
+  lang="reason"
+  showNumbers={false}
+  dark={true}
+/>
+
+```notes
+- The above code while looking almost identical, actually adresses all of the issues that were identified earlier. We can only ever set result to one of the four values (NotRequested..) (and the type system guarantees that),
+- We can only look at the Success data or Error data if we have first checked that the request was successful or had errored
+- We get told when not all cases are covered (Like if we only cover the case of Success and Error, but not the loading case)
+- We are also forced to verify that the data that came from the api is actually in the format that the type system expects (This )
+```
+
+
+
+
+
+
+
+---
+
+<p>aaa</p>
+---
+
+```notes
+With Javascript, we started with something that had a lot of deficiencies and then bolted things like typesystems, immutability, build tools and language extensions ontop of it. ReasonML was built with these things in mind right from the beginning and has these things as language features. Because the type system isn't added as an afterthought, it is really powerful and 100% sound and having immutability by default and no nulls removes so many bugs.
+```
