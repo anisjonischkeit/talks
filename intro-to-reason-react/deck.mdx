@@ -119,7 +119,7 @@ So how would we handle this in a ReasonML application?
 - The above code while looking almost identical, actually adresses all of the issues that were identified earlier. We can only ever set result to one of the four values (NotRequested..) (and the type system guarantees that),
 - We can only look at the Success data or Error data if we have first checked that the request was successful or had errored
 - We get told when not all cases are covered (Like if we only cover the case of Success and Error, but not the loading case)
-- We are also forced to verify that the data that came from the api is actually in the format that the type system expects (This )
+- We are also forced to verify that the data that came from the api is actually in the format that the type system expects (When we get the data back from the api, we put it into a decoder that verifies the types match up)
 ```
 
 
