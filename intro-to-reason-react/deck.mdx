@@ -27,7 +27,9 @@ import { CodeSurfer } from "mdx-deck-code-surfer";
 # The Type System
 
 ```notes
-One of the biggest things that makes writing React apps in Reason so much easier is the type system. In a ReasonML project you will always have 100% type coverage and you rarely have to write out types to get that (Reasons type checker can just figure them out for you). It also lets you model your applications data in a way that you eliminate impossible states so you only have to deal with valid states and then it makes you actually deal with all of your valid states. Let me show this with an example:
+One of the biggest things that makes writing React apps in Reason so much easier is the type system. In a ReasonML project you will always have 100% type coverage and you rarely have to write out types to get that (Reasons type checker can just figure them out for you). 
+
+It also lets you model your applications data in a way that you eliminate impossible states so you only have to deal with valid states and then it makes you actually deal with all of your valid states. Let me show this with an example:
 
 Imagine you want to fetch some data from an api. In javascript you might start by modelling it like this:
 ```
@@ -120,8 +122,164 @@ So how would we handle this in a ReasonML application?
 - We can only look at the Success data or Error data if we have first checked that the request was successful or had errored
 - We get told when not all cases are covered (Like if we only cover the case of Success and Error, but not the loading case)
 - We are also forced to verify that the data that came from the api is actually in the format that the type system expects (When we get the data back from the api, we put it into a decoder that verifies the types match up)
+
 ```
 
+---
+
+<CodeSurfer
+  code={require("!raw-loader!./code/6.js")}
+  lang="javascript"
+  showNumbers={false}
+  dark={true}
+/>
+
+---
+
+<CodeSurfer
+  code={require("!raw-loader!./code/7.re")}
+  lang="reason"
+  showNumbers={false}
+  dark={true}
+/>
+
+---
+
+<CodeSurfer
+  code={require("!raw-loader!./code/8.re")}
+  lang="reason"
+  showNumbers={false}
+  dark={true}
+/>
+
+---
+
+<CodeSurfer
+  code={require("!raw-loader!./code/9.re")}
+  lang="reason"
+  showNumbers={false}
+  dark={true}
+/>
+
+---
+
+<CodeSurfer
+  code={require("!raw-loader!./code/10.re")}
+  lang="reason"
+  showNumbers={false}
+  dark={true}
+/>
+
+---
+
+<CodeSurfer
+  code={require("!raw-loader!./code/11.re")}
+  lang="reason"
+  showNumbers={false}
+  dark={true}
+/>
+
+---
+
+<CodeSurfer
+  code={require("!raw-loader!./code/12.js")}
+  lang="javascript"
+  showNumbers={false}
+  dark={true}
+/>
+
+---
+
+<table style={{borderCollapse: "collapse", width: "100%"}}>
+  <tr>
+    <th style={{border: "1px solid white", padding: "0 20px 0 20px"}}>route</th>
+    <th style={{border: "1px solid white", padding: "0 20px 0 20px"}}>isLoggedIn</th>
+    <th style={{border: "1px solid white", padding: "0 20px 0 20px"}}>isAdmin</th>
+    <th style={{border: "1px solid white", padding: "0 20px 0 20px"}}>RESULT</th>
+  </tr>
+  <tr>
+    <td style={{border: "1px solid white"}}>Home</td>
+    <td style={{border: "1px solid white"}}>_</td>
+    <td style={{border: "1px solid white"}}>_</td>
+    <td style={{border: "1px solid white"}}>show home page</td>
+  </tr>
+  <tr>
+    <td style={{border: "1px solid white"}}>Login</td>
+    <td style={{border: "1px solid white"}}>false</td>
+    <td style={{border: "1px solid white"}}>_</td>
+    <td style={{border: "1px solid white"}}>show login page</td>
+  </tr>
+  <tr>
+    <td style={{border: "1px solid white"}}>Login</td>
+    <td style={{border: "1px solid white"}}>true</td>
+    <td style={{border: "1px solid white"}}>_</td>
+    <td style={{border: "1px solid white"}}>redirect to news feed</td>
+  </tr>
+  <tr>
+    <td style={{border: "1px solid white", padding: "0 20px 0 20px"}}>NewsFeed</td>
+    <td style={{border: "1px solid white"}}>false</td>
+    <td style={{border: "1px solid white"}}>false</td>
+    <td style={{border: "1px solid white"}}>redirect to home page</td>
+  </tr>
+  <tr>
+    <td style={{border: "1px solid white"}}>NewsFeed</td>
+    <td style={{border: "1px solid white"}}>true</td>
+    <td style={{border: "1px solid white"}}>false</td>
+    <td style={{border: "1px solid white"}}>show news feed page</td>
+  </tr>
+  <tr>
+    <td style={{border: "1px solid white"}}>NewsFeed</td>
+    <td style={{border: "1px solid white"}}>true</td>
+    <td style={{border: "1px solid white"}}>false</td>
+    <td style={{border: "1px solid white"}}>show news feed page</td>
+  </tr>
+  <tr>
+    <td style={{border: "1px solid white"}}>NewsFeed</td>
+    <td style={{border: "1px solid white"}}>true</td>
+    <td style={{border: "1px solid white"}}>true</td>
+    <td style={{border: "1px solid white", padding: "0 20px 0 20px"}}>show admin news feed page</td>
+  </tr>
+</table>
+
+---
+
+<CodeSurfer
+  code={require("!raw-loader!./code/13.re")}
+  lang="reason"
+  showNumbers={false}
+  dark={true}
+/>
+
+---
+
+<CodeSurfer
+  code={require("!raw-loader!./code/14.re")}
+  lang="reason"
+  showNumbers={false}
+  dark={true}
+/>
+
+---
+
+<CodeSurfer
+  code={require("!raw-loader!./code/15.js")}
+  lang="reason"
+  showNumbers={false}
+  dark={true}
+/>
+
+---
+
+<CodeSurfer
+  code={require("!raw-loader!./code/16.re")}
+  lang="reason"
+  showNumbers={false}
+  dark={true}
+/>
+
+
+
+
 
 
 
@@ -130,9 +288,12 @@ So how would we handle this in a ReasonML application?
 
 ---
 
-<p>aaa</p>
----
+### Anis Jonischkeit
+### Twitter: @_anisj
+
 
 ```notes
 With Javascript, we started with something that had a lot of deficiencies and then bolted things like typesystems, immutability, build tools and language extensions ontop of it. ReasonML was built with these things in mind right from the beginning and has these things as language features. Because the type system isn't added as an afterthought, it is really powerful and 100% sound and having immutability by default and no nulls removes so many bugs.
 ```
+
+---
